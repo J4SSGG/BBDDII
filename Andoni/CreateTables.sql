@@ -123,39 +123,42 @@ ALTER TABLE CursoAsignado ADD CONSTRAINT [FK_carne_asig] FOREIGN KEY (carne) REF
 IF  OBJECT_ID ('dbo.CursoCarrera') IS NOT NULL
 	DROP TABLE DBO.CursoCarrera 
 CREATE TABLE CursoCarrera (
-	id_curso_carrera int NOT NULL,
 	id_curso int NOT NULL,
 	id_carrera int NOT NULL
 )
 
-ALTER TABLE CursoCarrera add constraint [PK_Curso_Carrera] PRIMARY KEY (id_curso_carrera)
-ALTER TABLE CursoCarrera add constraint [FK_Curso_CursoCarrera] FOREIGN KEY (curso) references [Curso](id_curso)
-ALTER TABLE CursoCarrera add constraint [FK_Carrera_CursoCarrera] FOREIGN KEY (carrera) references [Carrera](id_carrera)
+ALTER TABLE CursoCarrera add constraint [PK_Curso_Carrera] PRIMARY KEY (id_curso, id_carrera)
+ALTER TABLE CursoCarrera add constraint [FK_Curso_CursoCarrera] FOREIGN KEY (id_curso) references [Curso](id_curso)
+ALTER TABLE CursoCarrera add constraint [FK_Carrera_CursoCarrera] FOREIGN KEY (id_carrera) references [Carrera](id_carrera)
 --============================================================================
 IF OBJECT_ID('dbo.CursoProgramado') IS NOT NULL
 	DROP TABLE dbo.CursoProgramado
 CREATE TABLE CursoProgramado (
-	id_cursoProgramado int not null,
-	id_cursoCarrera int not null,
+	id_curso int not null,
+	id_carrera int not null,
 	seccion int not null,
 	id_horario int not null, 
 	id_ciclo int not null,
 	cupo int not null default (40)
 )
-ALTER TABLE CursoProgramado ADD CONSTRAINT [PK_CursoProgramado] PRIMARY KEY (id_cursoCarrera, seccion)
-ALTER TABLE CursoProgramado ADD CONSTRAINT [FK_cursoCarrera] FOREIGN KEY (id_CursoCarrera) REFERENCES [CursoCarrera](id_CursoCarrera)
+ALTER TABLE CursoProgramado ADD CONSTRAINT [PK_CursoProgramado] PRIMARY KEY (id_curso, id_carrera, seccion)
+ALTER TABLE CursoProgramado ADD CONSTRAINT [FK_cursoCarrera] FOREIGN KEY (id_curso, id_carrera) REFERENCES [CursoCarrera](id_curso, id_carrera)
 ALTER TABLE CursoProgramado ADD CONSTRAINT [FK_horario] FOREIGN KEY (id_horario) REFERENCES [Horario](id_horario_hora)
 ALTER TABLE CursoProgramado ADD CONSTRAINT [FK_ciclo] FOREIGN KEY (id_ciclo) REFERENCES [Ciclo](id_ciclo)
 --============================================================================
-IF OBJECT_ID('dbo.LaboratorioCurso') IS NOT NULL 
-	DROP TABLE dbo.LaboratorioCurso
-CREATE TABLE LaboratorioCurso(
-	id_cursoCarrera int not null,
+IF OBJECT_ID('dbo.LaboratorioProgramado') IS NOT NULL 
+	DROP TABLE dbo.LaboratorioProgramado
+CREATE TABLE LaboratorioProgramado(
+	id_curso int not null,
+	id_carrera int not null,
 	seccion int not null,
-	id_horario int not null,
+	id_horario int not null, 
 	id_ciclo int not null,
 	cupo int not null default (20)
 )
-ALTER TABLE LaboratorioCurso ADD CONSTRAINT [PK_LaboratorioCurso] PRIMARY KEY (id_cursoProgramado )
+ALTER TABLE LaboratorioProgramado ADD CONSTRAINT [PK_LaboratorioProgramado] PRIMARY KEY (id_curso, id_carrera, seccion)
+ALTER TABLE LaboratorioProgramado ADD CONSTRAINT [FK_Lab_cursoCarrera] FOREIGN KEY (id_curso, id_carrera) REFERENCES [CursoCarrera](id_curso, id_carrera)
+ALTER TABLE LaboratorioProgramado ADD CONSTRAINT [FK_Lab_horario] FOREIGN KEY (id_horario) REFERENCES [Horario](id_horario_hora)
+ALTER TABLE LaboratorioProgramado ADD CONSTRAINT [FK_Lab_ciclo] FOREIGN KEY (id_ciclo) REFERENCES [Ciclo](id_ciclo)
 --============================================================================
 --============================================================================
