@@ -103,17 +103,59 @@ ALTER TABLE CuentaCorriente ADD CONSTRAINT [FK_cuenta_de_estudiante] FOREIGN KEY
 IF OBJECT_ID('dbo.Credenciales') IS NOT NULL
 	DROP TABLE DBO.Credenciales
 CREATE TABLE Credenciales (
-	id_cuentaCorriente int NOT NULL, 
 	carnet int NOT NULL,
 	contrasena varchar (100) NOT NULL 
 	)
+ALTER TABLE Credenciales ADD CONSTRAINT [PK_Credenciales] PRIMARY KEY (carnet, contrasena)
+ALTER TABLE Credenciales ADD CONSTRAINT [FK_contrasena_credencial] FOREIGN KEY (carnet) REFERENCES [ESTUDIANTE](CARNET)
+--============================================================================
+IF OBJECT_ID('dbo.CursoAsignado') IS NOT NULL
+	DROP TABLE dbo.CursoAsignado
+CREATE TABLE CursoAsignado (
+	id_curso_asignado int not null,
+	id_curso_asignado int not null,
+	carne int not null
+)
+ALTER TABLE CursoAsignado ADD CONSTRAINT [PK_CursoAsignado] PRIMARY KEY (id_curso_asignado)
+ALTER TABLE CursoAsignado ADD CONSTRAINT [FK_curso_Asignado] FOREIGN KEY (id_curso) REFERENCES [Curso_Asignado](id_curso_asignado)
+ALTER TABLE CursoAsignado ADD CONSTRAINT [FK_carne_asig] FOREIGN KEY (carne) REFERENCES [Estudiante](carne)
+--============================================================================
+IF  OBJECT_ID ('dbo.CursoCarrera') IS NOT NULL
+	DROP TABLE DBO.CursoCarrera 
+CREATE TABLE CursoCarrera (
+	id_curso_carrera int NOT NULL,
+	id_curso int NOT NULL,
+	id_carrera int NOT NULL
+)
 
-ALTER TABLE CuentaCorriente ADD CONSTRAINT [PK_CuentaCorriente] PRIMARY KEY (id_cuentaCorriente)
-ALTER TABLE CuentaCorriente ADD CONSTRAINT [FK_cuenta_de_estudiante] FOREIGN KEY (carnet) REFERENCES [ESTUDIANTE](CARNET)
+ALTER TABLE CursoCarrera add constraint [PK_Curso_Carrera] PRIMARY KEY (id_curso_carrera)
+ALTER TABLE CursoCarrera add constraint [FK_Curso_CursoCarrera] FOREIGN KEY (curso) references [Curso](id_curso)
+ALTER TABLE CursoCarrera add constraint [FK_Carrera_CursoCarrera] FOREIGN KEY (carrera) references [Carrera](id_carrera)
 --============================================================================
-
+IF OBJECT_ID('dbo.CursoProgramado') IS NOT NULL
+	DROP TABLE dbo.CursoProgramado
+CREATE TABLE CursoProgramado (
+	id_cursoProgramado int not null,
+	id_cursoCarrera int not null,
+	seccion int not null,
+	id_horario int not null, 
+	id_ciclo int not null,
+	cupo int not null default (40)
+)
+ALTER TABLE CursoProgramado ADD CONSTRAINT [PK_CursoProgramado] PRIMARY KEY (id_cursoCarrera, seccion)
+ALTER TABLE CursoProgramado ADD CONSTRAINT [FK_cursoCarrera] FOREIGN KEY (id_CursoCarrera) REFERENCES [CursoCarrera](id_CursoCarrera)
+ALTER TABLE CursoProgramado ADD CONSTRAINT [FK_horario] FOREIGN KEY (id_horario) REFERENCES [Horario](id_horario_hora)
+ALTER TABLE CursoProgramado ADD CONSTRAINT [FK_ciclo] FOREIGN KEY (id_ciclo) REFERENCES [Ciclo](id_ciclo)
 --============================================================================
---============================================================================
---============================================================================
+IF OBJECT_ID('dbo.LaboratorioCurso') IS NOT NULL 
+	DROP TABLE dbo.LaboratorioCurso
+CREATE TABLE LaboratorioCurso(
+	id_cursoCarrera int not null,
+	seccion int not null,
+	id_horario int not null,
+	id_ciclo int not null,
+	cupo int not null default (20)
+)
+ALTER TABLE LaboratorioCurso ADD CONSTRAINT [PK_LaboratorioCurso] PRIMARY KEY (id_cursoProgramado )
 --============================================================================
 --============================================================================
