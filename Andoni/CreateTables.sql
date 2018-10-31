@@ -161,4 +161,12 @@ ALTER TABLE LaboratorioProgramado ADD CONSTRAINT [FK_Lab_cursoCarrera] FOREIGN K
 ALTER TABLE LaboratorioProgramado ADD CONSTRAINT [FK_Lab_horario] FOREIGN KEY (id_horario) REFERENCES [Horario](id_horario_hora)
 ALTER TABLE LaboratorioProgramado ADD CONSTRAINT [FK_Lab_ciclo] FOREIGN KEY (id_ciclo) REFERENCES [Ciclo](id_ciclo)
 --============================================================================
+IF OBJECT_ID('dbo.CursoAprobado') IS NOT NULL 
+	 DROP TABLE CursoAprobado
+CREATE TABLE CursoAprobado(
+	id_cursoAprobado int not null,
+	carnet int not null,
+	id_cursoCarrera int not null,
+	aprobado bit not null default (0)
+)
 --============================================================================
