@@ -166,3 +166,11 @@ CREATE TABLE Prerrequisito(
 ALTER TABLE Prerrequisito ADD CONSTRAINT [PK_Prerrequisitos] PRIMARY KEY (id_prerriquisito)
 ALTER TABLE Prerrequisito ADD CONSTRAINT [FK_CURSO] FOREIGN KEY (ID_CURSO) REFERENCES [CURSO](ID_CURSO)
 --============================================================================
+IF OBJECT_ID('dbo.Bitacora') IS NOT NULL 
+	DROP TABLE dbo.Bitacora
+CREATE TABLE Bitacora(
+	id_transaccion int not null,
+	descripcion varchar(200) not null,
+	completada bit not null
+)
+ALTER TABLE Bitacora ADD CONSTRAINT [PK_Prerrequisitos] PRIMARY KEY (id_transaccion)
