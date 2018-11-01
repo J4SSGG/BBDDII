@@ -157,12 +157,12 @@ CREATE TABLE LaboratorioCurso(
 )
 ALTER TABLE LaboratorioCurso ADD CONSTRAINT [PK_LaboratorioCurso] PRIMARY KEY (id_cursoProgramado )
 --============================================================================
-IF OBJECT_ID('dbo.Prerrequisitos') IS NOT NULL 
-	DROP TABLE dbo.Prerrequisitos
-CREATE TABLE Prerrequisitos(
+IF OBJECT_ID('dbo.Prerrequisito') IS NOT NULL 
+	DROP TABLE dbo.Prerrequisito
+CREATE TABLE Prerrequisito(
 	id_prerriquisito int not null,
 	id_curso int not null
 )
-ALTER TABLE Prerrequisitos ADD CONSTRAINT [PK_Prerrequisitos] PRIMARY KEY (id_prerrequisitos)
-ALTER TABLE Prerrequisitos ADD CONSTRAINT [FK_CURSO] FOREIGN KEY (ID_CURSO) REFERENCES [CURSO](ID_CURSO)
+ALTER TABLE Prerrequisito ADD CONSTRAINT [PK_Prerrequisitos] PRIMARY KEY (id_prerriquisito)
+ALTER TABLE Prerrequisito ADD CONSTRAINT [FK_CURSO] FOREIGN KEY (ID_CURSO) REFERENCES [CURSO](ID_CURSO)
 --============================================================================
