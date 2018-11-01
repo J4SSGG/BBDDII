@@ -15,21 +15,22 @@ IF OBJECT_ID('dbo.Asignacion') IS NOT NULL
 	DROP TABLE dbo.Asignacion
 CREATE TABLE dbo.Asignacion
 (
-	horario_inicio	datetime	CONSTRAINT	[Asignacion_HoraInicio_NN]	NOT NULL,
-	horario_final	datetime	CONSTRAINT	[Asignacion_HoraFin_NN]		NOT NULL,
+	inicio			datetime	CONSTRAINT	[Asignacion_HoraInicio_NN]	NOT NULL,
+	final			datetime	CONSTRAINT	[Asignacion_HoraFin_NN]		NOT NULL,
 	id_facultad		int			CONSTRAINT	[Asignacion_Facultad_FK]	FOREIGN KEY REFERENCES Facultad (id_facultad),
 	id_ciclo		int			CONSTRAINT	[Asignacion_Ciclo_FK]		FOREIGN KEY REFERENCES Ciclo (id_ciclo)
 )
 
 
 
-IF OBJECT_ID('dbo.EstudianteCarrerra') IS NOT NULL
-	DROP TABLE dbo.EstudianteCarrerra
-CREATE TABLE dbo.EstudianteCarrerra
+IF OBJECT_ID('dbo.EstudianteCarrera') IS NOT NULL
+	DROP TABLE dbo.EstudianteCarrera
+CREATE TABLE dbo.EstudianteCarrera
 (
-	carnet			int			CONSTRAINT	[Hoario_VIP_Facultad_FK] FOREIGN KEY REFERENCES Facultad (id_facultad),
-	id_carrera		int			CONSTRAINT	[Hoario_VIP_Horario_FK] FOREIGN KEY REFERENCES Horario (id_horario_hora),
+	carnet			int			CONSTRAINT	[EstudianteCarrera_Carnet_FK] FOREIGN KEY REFERENCES Estudiante (carnet),
+	id_carrera		int			CONSTRAINT	[EstudianteCarrera_CarreraID_FK] FOREIGN KEY REFERENCES Carrera (id_carrera)
 )
+alter table EstudianteCarrera add constraint [UK_EstudianteCarrera] unique (carnet, id_carrera)
 
 IF OBJECT_ID('dbo.Restriccion') IS NOT NULL
 	DROP TABLE dbo.Restriccion
