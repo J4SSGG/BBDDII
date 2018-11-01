@@ -20,3 +20,9 @@ FROM	Estudiante AS e INNER JOIN
 		Facultad as F on C.id_facultad = F.id_facultad
 		ORDER BY 4
 
+SELECT C.id_curso, C.Nombre Curso, CR.id_curso, CR.Nombre Prerrequisito
+FROM
+	CURSO AS C INNER JOIN
+	Prerrequisito AS p ON p.id_curso = C.id_curso inner join
+	Curso as CR on p.id_curso_prerrequisito = CR.id_curso
+

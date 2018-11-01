@@ -740,3 +740,17 @@ INSERT INTO CuentaCorriente Values
 	(9857834,0),
 	(9904061,0),
 	(9992295,1)
+	
+
+-- PRERREQUISITOS
+INSERT INTO Prerrequisito values
+	(2,  1),
+	(3,  2),
+	(4,  3),
+	(5,  4),
+	(6,  1),
+	(7,  6),
+	(8,  7),
+	(18, 16),
+	(7, 3),
+	(8, 4 )
