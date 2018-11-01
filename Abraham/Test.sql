@@ -1,7 +1,9 @@
-SELECT * FROM EstudianteCarrerra
+SELECT * FROM EstudianteCarrera
 SELECT * FROM Carrera
 SELECT * FROM Curso
-
+SELECT * FROM Asignacion
+SELECT * FROM Ciclo
+SELECT * FROM Facultad
 
 -- ASOCIAR TODOS LOS ESTUDIANTES CON LA FACULTAD DE SU CARRERA Y ORDENAR POR FACULTAD
 SELECT E.*, F.Nombre Facultad, C.Nombre Carrera

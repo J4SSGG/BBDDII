@@ -11,12 +11,12 @@ INSERT INTO Horario VALUES
 	(8, '19:30:00', '21:00:00')
 GO
 INSERT INTO Ciclo VALUES
-	(1, 'Primer Ciclo 2018'),
-	(2, 'Interciclo 2018'),
-	(3, 'Segundo Ciclo 2018'),
-	(4, 'Primer Ciclo 2019'),
-	(5, 'Inteciclo 2019'),
-	(6, 'Segundo Ciclo 2019')
+	(1, 'Primer Ciclo 2018', 0),
+	(2, 'Interciclo 2018', 0),
+	(3, 'Segundo Ciclo 2018', 0),
+	(4, 'Primer Ciclo 2019', 1),
+	(5, 'Inteciclo 2019', 0),
+	(6, 'Segundo Ciclo 2019', 0)
 GO
 INSERT INTO Facultad VALUES
 	(1, 'Humanidades'),
@@ -91,8 +91,7 @@ INSERT INTO Carrera VALUES
 	(81, 8, 'Licenciatura en Investigación Criminal y Forense')
 
 -- Esutidnate Carrera
-
-INSERT INTO EstudianteCarrerra Values
+INSERT INTO EstudianteCarrera Values
 	(93616,10),
 	(106426,11),
 	(113523,12),
@@ -424,3 +423,18 @@ INSERT INTO Curso VALUES
 	(23, 'Pedagogía', 0),
 	(24, 'Psicología del Color', 0),
 	(25, 'Producción Sostenible', 0)
+
+
+-- Asignaciones
+INSERT INTO Asignacion Values
+	('2018-11-01T00:07:00', '2018-11-01T00:12:00', 1, 1),
+	('2018-11-01T00:07:00', '2019-11-01T00:12:00', 2, 4),
+	('2018-11-01T00:07:00', '2018-11-01T00:12:00', 3, 1),
+	('2018-11-01T00:07:00', '2018-11-01T00:12:00', 4, 1),
+	('2018-11-01T00:07:00', '2018-11-01T00:12:00', 5, 1),
+	('2018-11-01T00:07:00', '2018-11-01T00:12:00', 6, 1),
+	('2018-11-01T00:07:00', '2018-11-01T00:12:00', 7, 1),
+	('2018-11-01T00:07:00', '2018-11-01T00:12:00', 8, 1),
+	('2018-11-01T00:07:00', '2018-11-01T00:12:00', 9, 1)
+
+-- CICLO
