@@ -30,3 +30,11 @@ CREATE TABLE dbo.EstudianteCarrerra
 	carnet			int			CONSTRAINT	[Hoario_VIP_Facultad_FK] FOREIGN KEY REFERENCES Facultad (id_facultad),
 	id_carrera		int			CONSTRAINT	[Hoario_VIP_Horario_FK] FOREIGN KEY REFERENCES Horario (id_horario_hora),
 )
+
+IF OBJECT_ID('dbo.Restriccion') IS NOT NULL
+	DROP TABLE dbo.Restriccion
+CREATE TABLE dbo.Restriccion
+(
+	id_curso_programado	int		CONSTRAINT [Restriccion_CursoProgramado_FK]		FOREIGN KEY REFERENCES CursoProgramado (id_curso_programado),
+	id_carrera			int		CONSTRAINT [Restriccion_Carrera_FK]				FOREIGN KEY REFERENCES Carrera (id_carrera)	
+)
