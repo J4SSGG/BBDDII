@@ -50,5 +50,21 @@ CREATE TABLE dbo.CursoAprobado
 ALTER TABLE CursoAprobado ADD CONSTRAINT [CursoAprobado_UK] UNIQUE (carnet, id_curso)
 
 
+IF OBJECT_ID('dbo.CursoAsignado') IS NOT NULL
+	DROP TABLE dbo.CursoAsignado
+CREATE TABLE dbo.CursoAsignado
+(
+	carnet						int		CONSTRAINT [CursoAsignado_Carnet_FK]					FOREIGN KEY REFERENCES Estudiante (carnet),	
+	id_curso_programado			int		CONSTRAINT [CursosAsignado_CursoProgramado_FK]			FOREIGN KEY REFERENCES CursoProgramado (id_curso_programado)
+)
+ALTER TABLE CursoAsignado ADD CONSTRAINT [CursoAsignado_UK] UNIQUE (carnet, id_curso_programado)
 
 
+IF OBJECT_ID('dbo.LaboratorioAsignado') IS NOT NULL
+	DROP TABLE dbo.LaboratorioAsignado
+CREATE TABLE dbo.LaboratorioAsignado
+(
+	carnet								int		CONSTRAINT [LabAsignado_Carnet_FK]					FOREIGN KEY REFERENCES Estudiante (carnet),	
+	id_laboratorio_programado			int		CONSTRAINT [LabAsignado_CursoProgramado_FK]			FOREIGN KEY REFERENCES LaboratorioProgramado (id_laboratorio_programado)
+)
+ALTER TABLE LaboratorioAsignado ADD CONSTRAINT [LabAsignado_UK] UNIQUE (carnet, id_laboratorio_programado)

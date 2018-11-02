@@ -12,6 +12,13 @@ SELECT * FROM LaboratorioProgramado
 SELECT * FROM Prerrequisito
 SELECT * FROM Restriccion
 SELECT * FROM CursoAprobado
+SELECT * FROM CursoAsignado
+select * from LaboratorioAsignado
 
+delete from CursoAprobado
+delete from CursoAsignado
+delete from LaboratorioAsignado
+select * from dbo.FN_CursosProgramados(492928)
 
-	
+select * from dbo.FN_MostrarCursoProgramado(492928, 53)
+
