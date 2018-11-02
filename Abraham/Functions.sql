@@ -131,7 +131,7 @@ AS
 GO
 
 
--- Retornar horarios ocupados de un usuario
+-- Retornar si esta en su horario VIP
 
 USE PRegistroAcademico
 GO
