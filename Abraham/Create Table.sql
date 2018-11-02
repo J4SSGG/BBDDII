@@ -39,3 +39,16 @@ CREATE TABLE dbo.Restriccion
 	id_curso_programado	int		CONSTRAINT [Restriccion_CursoProgramado_FK]		FOREIGN KEY REFERENCES CursoProgramado (id_curso_programado),
 	id_carrera			int		CONSTRAINT [Restriccion_Carrera_FK]				FOREIGN KEY REFERENCES Carrera (id_carrera)	
 )
+
+IF OBJECT_ID('dbo.CursoAprobado') IS NOT NULL
+	DROP TABLE dbo.CursoAprobado
+CREATE TABLE dbo.CursoAprobado
+(
+	carnet				int		CONSTRAINT [CursoAprobado_Carnet_FK]			FOREIGN KEY REFERENCES Estudiante (carnet),	
+	id_curso			int		CONSTRAINT [CursosAprobado_Curso_FK]			FOREIGN KEY REFERENCES Curso (id_curso)
+)
+ALTER TABLE CursoAprobado ADD CONSTRAINT [CursoAprobado_UK] UNIQUE (carnet, id_curso)
+
+
+
+
